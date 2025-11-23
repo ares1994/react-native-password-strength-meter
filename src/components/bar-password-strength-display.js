@@ -20,6 +20,12 @@ class BarPasswordStrengthDisplay extends Component {
     this.animatedBarWidth = new Animated.Value(0);
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.password !== this.props.password) {
+      this.props?.onGetScore?.(Number(scorePassword(this.props.password, this.props.minLength, this.props.scoreLimit, this.props.variations)))
+    }
+  }
+
   render() {
     const {
       password,
